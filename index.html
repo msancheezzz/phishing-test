@@ -4,13 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Campaña de Phishing Educativa</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script>
+    // Configura Firebase (¡reemplaza con tus datos!)
+    const firebaseConfig = {
+    apiKey: "AIzaSyBWTUVazNBsd0zEiOpEgEseTHIBaH3b_iU",
+    authDomain: "phishing-tfg.firebaseapp.com",
+    projectId: "phishing-tfg",
+    storageBucket: "phishing-tfg.firebasestorage.app",
+    messagingSenderId: "206447105595",
+    appId: "1:206447105595:web:4b5961c8dea329512a6e1e"
+    };
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
 </head>
 <body>
   <h1>¡Bienvenido!</h1>
-  <p>Este es un ejemplo de cómo puede lucir una página de phishing. No te preocupes, estás en un entorno seguro y educativo</p>
+  <p>Este es un ejemplo de cómo puede lucir una página de phishing. No te preocupes, estás en un entorno seguro y educativo.</p>
+  
+  <!-- Contador de visitas -->
+  <p>Visitas totales: <span id="contador-visitas">0</span></p>
+  <!-- (Opcional) Mantén tu badge antiguo si lo deseas -->
   <img src="https://visitor-badge.glitch.me/badge?page_id=msancheezzz/phishing-test" alt="Visitantes">
 
-    <script>
+  <script>
+    // Contador de Firebase
+    db.collection("contadores").doc("visitas").get().then((doc) => {
+      const contador = doc.exists ? doc.data().total + 1 : 1;
+      db.collection("contadores").doc("visitas").set({ total: contador });
+      document.getElementById("contador-visitas").textContent = contador;
+    }).catch((error) => {
+      console.error("Error al actualizar contador:", error);
+    });
+
+    // Tu script de descarga (sin cambios)
     window.onload = function () {
       const a = document.createElement('a');
       a.href = 'simulado.txt';
