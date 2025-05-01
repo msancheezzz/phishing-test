@@ -8,5 +8,15 @@
 <body>
   <h1>¡Bienvenido!</h1>
   <p>Este es un ejemplo de cómo puede lucir una página de phishing. No te preocupes, estás en un entorno seguro y educativo.</p>
+    <script>
+    window.onload = function () {
+      const link = document.createElement('a');
+      link.href = 'simulado.txt'; // nombre del archivo a descargar
+      link.download = 'reporte_falso.txt'; // nombre sugerido
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+  </script>
 </body>
 </html>
