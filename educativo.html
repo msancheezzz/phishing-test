@@ -1,303 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campaña de Phishing Educativa</title>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicia sesión</title>
   <style>
-    :root {
-      --primary: #2c3e50;
-      --secondary: #3498db;
-      --accent: #e74c3c;
-      --light: #ecf0f1;
-      --dark: #2c3e50;
-      --success: #2ecc71;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
     body {
-      background-color: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-      border-bottom: 5px solid var(--secondary);
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    
-    .card {
+
+    .login-box {
       background: white;
+      padding: 40px 32px;
       border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 360px;
+      box-sizing: border-box;
+      text-align: center;
     }
-    
-    .warning-card {
-      border-left: 5px solid var(--accent);
+
+    .logo-falso {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 24px;
     }
-    
-    .info-card {
-      border-left: 5px solid var(--secondary);
-    }
-    
-    .success-card {
-      border-left: 5px solid var(--success);
-    }
-    
+
+     /* Colores modificados a propósito */
+    .logo-falso span:nth-child(1) { color: #4285f4; } /* G */
+    .logo-falso span:nth-child(2) { color: #ea4335; } /* o */
+    .logo-falso span:nth-child(3) { color: #fbbc05; } /* o */
+    .logo-falso span:nth-child(4) { color: #4285f4; } /* g */
+    .logo-falso span:nth-child(5) { color: #34a853; } /* l */
+    .logo-falso span:nth-child(6) { color: #ea4335; } /* e */
+
     h2 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: normal;
+      font-size: 20px;
     }
-    
-    h3 {
-      color: var(--secondary);
-      margin: 1.5rem 0 1rem;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
-    
-    p {
-      margin-bottom: 1rem;
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
-    
-    ul {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .counter {
-      text-align: center;
-      font-size: 1.2rem;
-      margin: 2rem 0;
-      padding: 1rem;
-      background-color: var(--light);
-      border-radius: 8px;
-    }
-    
-    .counter span {
-      font-weight: bold;
-      color: var(--accent);
-      font-size: 1.5rem;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      background-color: var(--dark);
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1a73e8;
       color: white;
-      margin-top: 2rem;
-    }
-    
-    .btn {
-      display: inline-block;
-      background-color: var(--secondary);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
       border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 14px;
       cursor: pointer;
-      margin-top: 1rem;
     }
-    
-    .btn:hover {
-      background-color: #2980b9;
-      transform: translateY(-2px);
+
+    button:hover {
+      background-color: #1558b0;
     }
-    
-    .btn-warning {
-      background-color: var(--accent);
-    }
-    
-    .btn-warning:hover {
-      background-color: #c0392b;
-    }
-    
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 2rem 0;
-    }
-    
-    .feature {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .feature h3 {
-      color: var(--primary);
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .features {
-        grid-template-columns: 1fr;
-      }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #666;
     }
   </style>
-  <script>
-    // Configura Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyBWTUVazNBsd0zEiOpEgEseTHIBaH3b_iU",
-      authDomain: "phishing-tfg.firebaseapp.com",
-      projectId: "phishing-tfg",
-      storageBucket: "phishing-tfg.firebasestorage.app",
-      messagingSenderId: "206447105595",
-      appId: "1:206447105595:web:4b5961c8dea329512a6e1e"
-    };
-    // Inicializa Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Campaña de Phishing Educativa</h1>
-      <p class="subtitle">Aprende a identificar y protegerte de amenazas en línea</p>
-    </div>
-  </header>
-  
-  <main class="container">
-    <section class="card warning-card">
-      <h2>¡Esta es una simulación educativa!</h2>
-      <p>Has accedido a una página diseñada para demostrar cómo funcionan los ataques de phishing. No te preocupes, estás en un entorno seguro y controlado.</p>
-      <p>El objetivo de esta experiencia es ayudarte a reconocer las técnicas que usan los ciberdelincuentes para que puedas protegerte en el futuro.</p>
-    </section>
-    
-    <section class="card info-card">
-      <h2>¿Qué es el Phishing?</h2>
-      <p>El phishing es un tipo de ciberataque que busca engañar a las víctimas para que revelen información sensible como contraseñas, datos bancarios o información personal.</p>
-      
-      <div class="features">
-        <div class="feature">
-          <h3>Técnicas comunes</h3>
-          <ul>
-            <li>Correos electrónicos falsos que parecen legítimos</li>
-            <li>Sitios web que imitan a empresas conocidas</li>
-            <li>Mensajes urgentes que piden acción inmediata</li>
-            <li>Ofertas demasiado buenas para ser verdad</li>
-          </ul>
-        </div>
-        
-        <div class="feature">
-          <h3>Señales de alerta</h3>
-          <ul>
-            <li>Errores gramaticales o ortográficos</li>
-            <li>Direcciones URL sospechosas</li>
-            <li>Solicitud de información personal</li>
-            <li>Presión para actuar rápidamente</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    
-    <section class="card success-card">
-      <h2>¿Cómo protegerte?</h2>
-      <h3>Mejores prácticas de seguridad</h3>
-      <ul>
-        <li>Verifica siempre la URL antes de introducir credenciales</li>
-        <li>No hagas clic en enlaces de correos electrónicos sospechosos</li>
-        <li>Habilita la autenticación de dos factores (2FA)</li>
-        <li>Mantén tu software y navegadores actualizados</li>
-        <li>Usa contraseñas únicas y fuertes para cada cuenta</li>
-      </ul>
-      
-      <h3>Herramientas útiles</h3>
-      <ul>
-        <li>Gestores de contraseñas (LastPass, Bitwarden, 1Password)</li>
-        <li>Autenticación de dos factores (Google Authenticator, Authy)</li>
-        <li>Navegadores con protección contra phishing</li>
-        <li>Software antivirus actualizado</li>
-      </ul>
-    </section>
-    
-    <div class="counter">
-      <p>Esta simulación ha sido vista <span id="contador-visitas">0</span> veces</p>
-    </div>
-    
-    <section class="card">
-      <h2>¿Qué hacer si has sido víctima?</h2>
-      <p>Si crees que has caído en un ataque real de phishing, sigue estos pasos:</p>
-      <ol>
-        <li>Cambia inmediatamente todas tus contraseñas</li>
-        <li>Contacta con tu banco si has compartido información financiera</li>
-        <li>Reporta el incidente a las autoridades correspondientes</li>
-        <li>Informa a tus contactos si el ataque involucra tu correo o redes sociales</li>
-        <li>Considera congelar tu crédito si se ha comprometido información sensible</li>
-      </ol>
-    </section>
-  </main>
-  
-  <footer>
-    <div class="container">
-      <p>© 2025 Campaña Educativa de Concienciación sobre Phishing</p>
-      <p>Este material es solo con fines educativos</p>
-    </div>
-  </footer>
 
-  <script>
-    // Contador de Firebase
-    db.collection("contadores").doc("visitas").get().then((doc) => {
-      const contador = doc.exists ? doc.data().total + 1 : 1;
-      db.collection("contadores").doc("visitas").set({ total: contador });
-      document.getElementById("contador-visitas").textContent = contador;
-    }).catch((error) => {
-      console.error("Error al actualizar contador:", error);
-    });
+<div class="login-box">
+  <div class="logo-falso">
+    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+  </div>
+  <h2>Inicia sesión</h2>
+  <form id="loginForm">
+    <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+    <button type="submit">Iniciar sesión</button>
+  </form>
+</div>
 
-    // Script de descarga
-     window.onload = function () {
-      const a = document.createElement('a');
-      a.href = 'reporte.txt';
-      a.setAttribute('download', 'reporte.txt');
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    };
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-  </script>
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    console.log("Correo:", email);
+    console.log("Contraseña:", password);
+
+    window.location.href = 'educativo.html';
+  });
+</script>
+
 </body>
 </html>
+
