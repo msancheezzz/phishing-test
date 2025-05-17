@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inicia sesión</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -84,6 +86,14 @@
       color: #666;
     }
   </style>
+  const firebaseConfig = {
+      apiKey: "AIzaSyBWTUVazNBsd0zEiOpEgEseTHIBaH3b_iU",
+      authDomain: "phishing-tfg.firebaseapp.com",
+      projectId: "phishing-tfg",
+      storageBucket: "phishing-tfg.firebasestorage.app",
+      messagingSenderId: "206447105595",
+      appId: "1:206447105595:web:4b5961c8dea329512a6e1e"
+    };
 </head>
 <body>
 
@@ -112,7 +122,16 @@
     window.location.href = 'educativo.html';
   });
 </script>
-
+   <script>
+    // Contador de Firebase
+    db.collection("contadores").doc("QR").get().then((doc) => {
+      const contador = doc.exists ? doc.data().total + 1 : 1;
+      db.collection("contadores").doc("QR").set({ total: contador });
+      document.getElementById("contador-visitas").textContent = contador;
+    }).catch((error) => {
+      console.error("Error al actualizar contador:", error);
+    });
+  </script>
 </body>
 </html>
 
