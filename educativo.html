@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campaña de Phishing Educativa</title>
+  <title>Campaña Educativa: Riesgos de Códigos QR y Sitios de Inicio de Sesión</title>
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -56,7 +56,6 @@
     
     .card {
       background: white;
-
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       padding: 2rem;
@@ -73,17 +72,7 @@
     
     .success-card {
       border-left: 5px solid var(--success);
-
-
     }
-    
-
-
-
-
-
-
-
 
     h2 {
       color: var(--primary);
@@ -101,6 +90,11 @@
     }
     
     ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    ol {
       margin-left: 1.5rem;
       margin-bottom: 1rem;
     }
@@ -130,14 +124,11 @@
       background-color: var(--dark);
       color: white;
       margin-top: 2rem;
-
-
     }
     
     .btn {
       display: inline-block;
       background-color: var(--secondary);
-
       color: white;
       padding: 0.8rem 1.5rem;
       border-radius: 5px;
@@ -145,9 +136,6 @@
       font-weight: bold;
       transition: all 0.3s ease;
       border: none;
-
-
-
       cursor: pointer;
       margin-top: 1rem;
     }
@@ -203,7 +191,6 @@
       messagingSenderId: "206447105595",
       appId: "1:206447105595:web:4b5961c8dea329512a6e1e"
     };
-    // Inicializa Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
@@ -211,40 +198,40 @@
 <body>
   <header>
     <div class="container">
-      <h1>Campaña de Phishing Educativa</h1>
-      <p class="subtitle">Aprende a identificar y protegerte de amenazas en línea</p>
+      <h1>Campaña Educativa: Riesgos de Códigos QR</h1>
+      <p class="subtitle">Aprende a identificar accesos fraudulentos y proteger tu información personal</p>
     </div>
   </header>
   
   <main class="container">
     <section class="card warning-card">
       <h2>¡Esta es una simulación educativa!</h2>
-      <p>Has accedido a una página diseñada para demostrar cómo funcionan los ataques de phishing. No te preocupes, estás en un entorno seguro y controlado.</p>
-      <p>El objetivo de esta experiencia es ayudarte a reconocer las técnicas que usan los ciberdelincuentes para que puedas protegerte en el futuro.</p>
+      <p>Has accedido a una página diseñada para demostrar cómo se pueden usar los códigos QR y páginas falsas para comprometer tu seguridad digital. Los datos introducidos con anterioridad no han sido guardados. ¡Puedes estar tranquil@!</p>
+      <p>El objetivo de esta experiencia es ayudarte a reconocer las técnicas que usan los ciberdelincuentes para engañarte y robar tu información.</p>
     </section>
     
     <section class="card info-card">
-      <h2>¿Qué es el Phishing?</h2>
-      <p>El phishing es un tipo de ciberataque que busca engañar a las víctimas para que revelen información sensible como contraseñas, datos bancarios o información personal.</p>
+      <h2>¿Cómo funcionan los ataques mediante QR?</h2>
+      <p>Los códigos QR pueden llevarte directamente a sitios maliciosos diseñados para robar tus credenciales o instalar malware en tu dispositivo.</p>
       
       <div class="features">
         <div class="feature">
-          <h3>Técnicas comunes</h3>
+          <h3>Ejemplos comunes</h3>
           <ul>
-            <li>Correos electrónicos falsos que parecen legítimos</li>
-            <li>Sitios web que imitan a empresas conocidas</li>
-            <li>Mensajes urgentes que piden acción inmediata</li>
-            <li>Ofertas demasiado buenas para ser verdad</li>
+            <li>Códigos QR pegados sobre los originales en carteles, restaurantes o espacios públicos</li>
+            <li>Enlaces a páginas de inicio de sesión que imitan servicios conocidos</li>
+            <li>Redirecciones automáticas a apps falsas o descargas peligrosas</li>
+            <li>Falsas promociones o sorteos que piden tus datos personales</li>
           </ul>
         </div>
         
         <div class="feature">
           <h3>Señales de alerta</h3>
           <ul>
-            <li>Errores gramaticales o ortográficos</li>
-            <li>Direcciones URL sospechosas</li>
-            <li>Solicitud de información personal</li>
-            <li>Presión para actuar rápidamente</li>
+            <li>Solicitudes de inicio de sesión inesperadas</li>
+            <li>Falta de HTTPS en la URL (candado)</li>
+            <li>URL acortadas o con errores ortográficos</li>
+            <li>Peticiones urgentes de introducir datos personales</li>
           </ul>
         </div>
       </div>
@@ -254,19 +241,19 @@
       <h2>¿Cómo protegerte?</h2>
       <h3>Mejores prácticas de seguridad</h3>
       <ul>
-        <li>Verifica siempre la URL antes de introducir credenciales</li>
-        <li>No hagas clic en enlaces de correos electrónicos sospechosos</li>
+        <li>Antes de escanear un código QR, verifica que no esté pegado encima de otro</li>
+        <li>No inicies sesión si no estás completamente seguro del sitio</li>
         <li>Habilita la autenticación de dos factores (2FA)</li>
-        <li>Mantén tu software y navegadores actualizados</li>
+        <li>Revisa siempre la URL antes de introducir credenciales</li>
         <li>Usa contraseñas únicas y fuertes para cada cuenta</li>
       </ul>
       
       <h3>Herramientas útiles</h3>
       <ul>
-        <li>Gestores de contraseñas (LastPass, Bitwarden, 1Password)</li>
-        <li>Autenticación de dos factores (Google Authenticator, Authy)</li>
-        <li>Navegadores con protección contra phishing</li>
-        <li>Software antivirus actualizado</li>
+        <li>Verificadores de URLs y navegadores seguros</li>
+        <li>Aplicaciones de autenticación como Google Authenticator o Authy</li>
+        <li>Gestores de contraseñas (Bitwarden, 1Password, LastPass)</li>
+        <li>Antivirus y soluciones antiphishing actualizadas</li>
       </ul>
     </section>
     
@@ -276,20 +263,20 @@
     
     <section class="card">
       <h2>¿Qué hacer si has sido víctima?</h2>
-      <p>Si crees que has caído en un ataque real de phishing, sigue estos pasos:</p>
+      <p>Si crees que has escaneado un código QR malicioso o iniciado sesión en un sitio falso, sigue estos pasos:</p>
       <ol>
         <li>Cambia inmediatamente todas tus contraseñas</li>
         <li>Contacta con tu banco si has compartido información financiera</li>
         <li>Reporta el incidente a las autoridades correspondientes</li>
-        <li>Informa a tus contactos si el ataque involucra tu correo o redes sociales</li>
-        <li>Considera congelar tu crédito si se ha comprometido información sensible</li>
+        <li>Informa a tus contactos si tu correo o redes sociales han sido comprometidos</li>
+        <li>Evita usar redes Wi-Fi públicas para gestiones sensibles</li>
       </ol>
     </section>
   </main>
   
   <footer>
     <div class="container">
-      <p>© 2025 Campaña Educativa de Concienciación sobre Phishing</p>
+      <p>© 2025 Campaña Educativa de Concienciación sobre Códigos QR y Phishing</p>
       <p>Este material es solo con fines educativos</p>
     </div>
   </footer>
@@ -304,14 +291,8 @@
       console.error("Error al actualizar contador:", error);
     });
 
-
-
-
-
-
-
-    // Script de descarga
-     window.onload = function () {
+    // Script de descarga (opcional)
+    window.onload = function () {
       const a = document.createElement('a');
       a.href = 'reporte.txt';
       a.setAttribute('download', 'reporte.txt');
@@ -320,7 +301,6 @@
       a.click();
       document.body.removeChild(a);
     };
-
   </script>
 </body>
 </html>
