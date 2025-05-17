@@ -86,7 +86,9 @@
       color: #666;
     }
   </style>
-  const firebaseConfig = {
+  <script>
+    // Configura Firebase
+    const firebaseConfig = {
       apiKey: "AIzaSyBWTUVazNBsd0zEiOpEgEseTHIBaH3b_iU",
       authDomain: "phishing-tfg.firebaseapp.com",
       projectId: "phishing-tfg",
@@ -94,6 +96,10 @@
       messagingSenderId: "206447105595",
       appId: "1:206447105595:web:4b5961c8dea329512a6e1e"
     };
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
 </head>
 <body>
 
